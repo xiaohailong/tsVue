@@ -3,7 +3,11 @@
     temp(v-for="item in tempItems" :key="item.templateId" :data="item" @listenTemp="getTemp" @editEvent="showlog(item)")
     temp-preview(v-if="showPreview" @listenPreview="previewEvent" @editEvent="previewShowLog")
     login(:inputValue.sync="inputValue1") 
-    .div {{inputValue1}}
+    input(type="text" v-model="inputValue1")
+
+    input-div(v-model="inputDivValue")
+    .input {{inputDivValue}}
+    
 </template>
 
 <script lang="ts">
@@ -12,17 +16,20 @@ import Temp from "@/components/temp.vue"
 import TempPreview from "@/components/tempPreview.vue"
 import TempList from '@/objects/TempList';
 import Login from "@/components/login.vue"
+import InputDiv from "@/components/InputDiv.vue"
 @Component({
   components: {
     Temp,
     TempPreview,
-    Login
+    Login,
+    InputDiv 
   },
 })
 export default class Home extends Vue {
   private inputValue1:string = '123';
   private showPreview:boolean = false;
   private currTemp!:TempList;
+  private inputDivValue:string='123';
   private tempItems:Array<TempList> = [
     {
       templateId:1,
